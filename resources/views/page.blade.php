@@ -16,51 +16,29 @@
 
 <div class="flex flex-wrap justify-between md:justify-start mb-10">
 
-    <div class="w-full md:w-1/4 p-5 bg-white text-right">
-        <ul class="space-y-3">
-            <li class="bg-green-500 p-5 text-white cursor-pointer">Вакансии</li>
-            <li class="bg-green-500 p-5 text-white cursor-pointer">Резюме по профессиям</li>
-            <li class="bg-green-500 p-5 text-white cursor-pointer">Резюме по возрасту</li>
-            <li class="bg-green-500 p-5 text-white cursor-pointer">Избранное резюме</li>
-        </ul>
-    </div>
+    @include('sidebar')
 
     <div class="flex-1 flex flex-col">
         <h1 class="text-3xl font-bold">Программист</h1>
         <div class="flex flex-wrap gap-5">
-            <div class="flex flex-col cursor-pointer">
-                <img src="{{ asset('img/ava1.jpg') }}"
-                     alt="Аватар"
-                     class="w-40 h-30"
-                >
-                <div class="flex flex-col">
-                    <p>Иванов Иван</p>
-                    <p class="mb-3">Телефон: 111111</p>
-                    <p class="text-green-600 font-bold">Стаж: 7 лет</p>
+            @foreach ($persons as $person)
+                <div class="flex flex-col cursor-pointer" onclick="window.location.href='show/{{ $person['id'] }}'">
+                    <img src="{{ asset('img/'.$person['Image']) }}"
+                         alt="Аватар"
+                         class="w-40 h-30"
+                    >
+                    <div class="flex flex-col">
+                        <p>ФИО: {{ $person['FIO'] }}</p>
+                        <p class="mb-3">Телефон: {{ $person['Phone'] }}</p>
+                        <p class="text-green-600 font-bold">Стаж: {{ $person['Stage'] }}</p>
+                    </div>
+                    <form action="/delete/{{ $person['id'] }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="border-[1px] border-solid border-black p-1">Удалить</button>
+                    </form>
                 </div>
-            </div>
-            <div class="flex flex-col cursor-pointer">
-                <img src="{{ asset('img/ava1.jpg') }}"
-                     alt="Аватар"
-                     class="w-40 h-30"
-                >
-                <div class="flex flex-col">
-                    <p>Иванов Иван</p>
-                    <p class="mb-3">Телефон: 111111</p>
-                    <p class="text-green-600 font-bold">Стаж: 7 лет</p>
-                </div>
-            </div>
-            <div class="flex flex-col cursor-pointer">
-                <img src="{{ asset('img/ava1.jpg') }}"
-                     alt="Аватар"
-                     class="w-40 h-30"
-                >
-                <div class="flex flex-col">
-                    <p>Иванов Иван</p>
-                    <p class="mb-3">Телефон: 111111</p>
-                    <p class="text-green-600 font-bold">Стаж: 7 лет</p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 

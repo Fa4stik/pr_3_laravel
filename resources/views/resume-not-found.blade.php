@@ -19,23 +19,7 @@
     @include('sidebar')
 
     <div class="w-full md:w-2/3 p-5 bg-white">
-        <div class="inline-block w-full">
-            <img class="w-40 h-30" src="{{ asset('img/'.$data['Аватар']) }}" alt="Аватар">
-        </div>
-
-        <div class="inline-block w-full mt-5">
-            <p class="text-lg font-semibold">{{ $data['Фамилия'] }}</p>
-            <p>Телефон: {{ $data['Телефон'] }}</p>
-        </div>
-
-        <div class="inline-block w-full mt-5 mb-5">
-            <p class="text-green-700 font-bold">Профессия: {{ $data['Профессия'] }}</p>
-            <p>Стаж: {{ $data['Стаж'] }}</p>
-        </div>
-
-        <button class="border-[2px] border-solid border-black p-2">
-            <a href="/edit/{{ $data['id'] }}">Редактировать</a>
-        </button>
+        <h1 class="text-3xl">Резюме с id {{ $id }} не найдено</h1>
     </div>
 
 </div>
